@@ -50,6 +50,10 @@ public class Pattern : MonoBehaviour
 
         return s + pattern[pattern.Count-1] + "]";
     }
+    public int LastValue()
+    {
+        return pattern[pattern.Count - 1];
+    }
 
     public double Compare(List<int> array, int startIndex)
     {
@@ -63,42 +67,10 @@ public class Pattern : MonoBehaviour
                 correct++;
             }
         }
-        value = (double)correct /(double)length;
         return (double)correct/(double)length;
     }
 
-    public void RemoveInsignificantValues()
-    {
-        if (pattern.Count > 8)
-        {
-            if (value < 0.9)
-            {
-                value = 0;
-            }
-        }
-        else if (pattern.Count > 5)
-        {
-            if (value < 0.8)
-            {
-                value = 0;
-            }
-        }
-        else if (pattern.Count > 3)
-        {
-            if (value < 0.7)
-            {
-                value = 0;
-            }
-        }
-        else if (pattern.Count > 1)
-        {
-            if (value < 0.9)
-            {
-                value = 0;
-            }
-        }
-
-    }
+    
 
 
 
@@ -108,7 +80,7 @@ public class Pattern : MonoBehaviour
         int arrayLen = array.Count;
         int correct = 0;
         int patternIndex = 0;
-        for (int i = arrayLen - length - 1; i < arrayLen; i++)
+        for (int i = arrayLen - length; i < arrayLen; i++)
         {
             if (array[i] == pattern[patternIndex])
             {

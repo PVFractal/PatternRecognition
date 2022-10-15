@@ -6,7 +6,7 @@ public class MainAlgorithm : MonoBehaviour
 {
     private int length = 4;
 
-    private int[] testArray = {0, 1, 2, 3, 1, 2, 1, 2, 3, 1, 5, 4, 6, 2, 3, 4, 1, 3, 2};
+    private int[] testArray = {0,1,0};
     private List<int> dataArray;
 
     private List<Pattern> patterns;
@@ -37,11 +37,14 @@ public class MainAlgorithm : MonoBehaviour
 
         CheckPatterns();
 
-        DisplayPatternsSelective();
 
-        int index = GetMostValueablePattern();
+        //DisplayPatterns();
 
-        Debug.Log("Most valuable: " + patterns[index].ToString());
+        //DisplayPatternsSelective();
+
+        int index = FindNextValue();
+
+        Debug.Log("Next value: " + index);
 
 
     }
@@ -110,6 +113,8 @@ public class MainAlgorithm : MonoBehaviour
         return valueableIndex;
     }
 
+
+
     private int FindNextValue()
     {
         int valueableIndex = -1;
@@ -118,17 +123,26 @@ public class MainAlgorithm : MonoBehaviour
         {
             double correctness = patterns[i].PredictionCorrectness(dataArray);
 
+
             if (correctness < 0.8)
             {
                 correctness = 0;
             }
-            double rawVal = patterns[i].GetVal();
+
+
+            /*
+            if (correctness > 0)
+            {
+                Debug.Log("Correct Pattern: " + patterns[i].ToString() + " Correctness: " + correctness);
+            }
+            */
+
+
+
+            double rawVal = patterns[i].SortValue();
             double val = correctness * rawVal;
 
-            if (val > 0)
-            {
-                Debug.Log("FinalVal: " + val);
-            }
+            
 
             if (val > bestVal)
             {
@@ -139,13 +153,12 @@ public class MainAlgorithm : MonoBehaviour
         }
         
 
-
-        return 0;
+        if (valueableIndex != -1)
+        {
+            return patterns[valueableIndex].LastValue();
+        }
+        return -1;
     }
-
-
-
-
 
 
     private void CheckPatterns()
@@ -160,8 +173,8 @@ public class MainAlgorithm : MonoBehaviour
             while (arrayIndex + patterns[i].Count() < length)
             {
                 double val = patterns[i].Compare(dataArray, arrayIndex);
-                patterns[i].RemoveInsignificantValues();
-
+                val = RemoveInsignificantValues(val, patterns[i].Count());
+                patterns[i].AddVal(val);
 
 
                 arrayIndex++;
@@ -171,8 +184,42 @@ public class MainAlgorithm : MonoBehaviour
     }
 
 
+    public double RemoveInsignificantValues(double val, int patternLength)
+    {
+            
+        if (patternLength > 8)
+        {
+            if (val < 0.9)
+            {
+                return 0;
+            }
+        }
+        else if (patternLength > 5)
+        {
+            if (val < 0.8)
+            {
+                return 0;
+            }
+        }
+        else if (patternLength > 3)
+        {
+            if (val < 0.7)
+            {
+                return 0;
+            }
+        }
+        else if (patternLength > 1)
+        {
+            if (val < 0.9)
+            {
+                return 0;
+            }
+        }
 
-    
+        return val;
+
+    }
+
 
 
 
