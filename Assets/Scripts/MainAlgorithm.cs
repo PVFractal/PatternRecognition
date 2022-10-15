@@ -1,12 +1,21 @@
-﻿using System.Collections;
+﻿/*
+ * Name: Peter Vahlberg
+ * Date created: 10/15/22
+ * Purpose: to compute the next number given an array of numbers
+ */
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class MainAlgorithm : MonoBehaviour
 {
     private int length = 4;
 
-    private int[] testArray = {0,1,0};
+    private int[] testArray = {2,4,6,8,6,4};
     private List<int> dataArray;
 
     private List<Pattern> patterns;
@@ -14,14 +23,18 @@ public class MainAlgorithm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dataArray = new List<int>(testArray);
-        length = dataArray.Count;
+        
 
         GetPrediction();
     }
 
     public void GetPrediction()
     {
+
+        dataArray = new List<int>(testArray);
+        length = dataArray.Count;
+
+
         patterns = new List<Pattern>();
         
         GetPatternList();

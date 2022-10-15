@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/*
+ * Name: Peter Vahlberg
+ * Date created: 10/15/22
+ * Purpose: class used to store type pattern
+ * 
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
