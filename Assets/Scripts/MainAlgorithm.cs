@@ -20,20 +20,30 @@ public class MainAlgorithm : MonoBehaviour
 
     private List<Pattern> patterns;
 
-    // Start is called before the first frame update
-    void Start()
+    public void addToArray(int num)
     {
-        
+        dataArray.Add(num);
 
-        GetPrediction();
+        if (dataArray.Count > 20)
+        {
+            dataArray.RemoveAt(0);
+        }
     }
 
-    public void GetPrediction()
+
+    public MainAlgorithm ()
+    {
+        dataArray = new List<int>();
+    }
+    public int GetPrediction()
     {
 
-        dataArray = new List<int>(testArray);
+
+        
+        //dataArray = new List<int>(testArray);
         length = dataArray.Count;
 
+        if (length < 3) { return -1; }
 
         patterns = new List<Pattern>();
         
@@ -57,9 +67,7 @@ public class MainAlgorithm : MonoBehaviour
 
         int index = FindNextValue();
 
-        Debug.Log("Next value: " + index);
-
-
+        return index;
     }
 
     private void GetPatternList()
@@ -231,16 +239,6 @@ public class MainAlgorithm : MonoBehaviour
 
         return val;
 
-    }
-
-
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 

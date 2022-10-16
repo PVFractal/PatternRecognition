@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4678314836398436642}
   - component: {fileID: 4678314836398436643}
+  - component: {fileID: -2902013854933193937}
   m_Layer: 0
-  m_Name: Node
+  m_Name: GoodNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,3 +146,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-2902013854933193937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678314836398436652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbc9d59081934cadb37bdeb9985c0b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Good: 1
+  explosion: {fileID: 3539494740008727193, guid: b6ea9544ee75f49c797795b79f429493,
+    type: 3}

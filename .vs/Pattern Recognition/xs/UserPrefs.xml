@@ -1,22 +1,28 @@
 ﻿<Properties StartupConfiguration="{84BF2454-5100-0171-BBBE-3C66D0E4D85E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NodeScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/KillSelf.cs">
     <Files>
-      <File FileName="Assets/Scripts/MainAlgorithm.cs" Line="18" Column="43" />
-      <File FileName="Assets/Scripts/Pattern.cs" Line="7" Column="4" />
-      <File FileName="Assets/Scripts/MainGameRunner.cs" Line="27" Column="6" />
-      <File FileName="Assets/Scripts/NodeScript.cs" Line="20" Column="9" />
+      <File FileName="Assets/Scripts/MainAlgorithm.cs" Line="41" Column="1" />
+      <File FileName="Assets/Scripts/MainGameRunner.cs" Line="108" Column="6" />
+      <File FileName="Assets/Scripts/NodeScript.cs" Line="29" Column="6" />
+      <File FileName="Assets/Scripts/KillSelf.cs" Line="20" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Pattern Recognition" expanded="True" selected="True" />
+          <Node name="Pattern Recognition" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="KillSelf.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="406917eb-4976-4774-b34d-a57236b7f230" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ab044e34-efec-456d-b78a-13f2ac872cf0" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
