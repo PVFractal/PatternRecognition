@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class MainGameRunner : MonoBehaviour
 {
@@ -20,10 +22,14 @@ public class MainGameRunner : MonoBehaviour
 
 
     //Control variables
-    private float ultimateSpeed = 200;
-    private float fraction = 3;
+    public float ultimateSpeed = 500;
+    public float fraction = 3;
+    public float options = 6;
 
-    private float options = 3;
+
+    
+
+
 
     private float explosionRadius;
 
@@ -42,9 +48,23 @@ public class MainGameRunner : MonoBehaviour
 
     private MainAlgorithm calculator;
 
+    public GameObject green;
+
+    private List<GameObject> targets;
+
+    private float targetShowing = 0;
+
+    private List<int> score;
+
+    private Text labelText;
 
     void Start()
     {
+
+        labelText = GameObject.Find("MainText").GetComponent<Text>();
+        score = new List<int>();
+
+
         calculator = new MainAlgorithm();
 
         limit = ultimateSpeed / fraction;
@@ -75,11 +95,35 @@ public class MainGameRunner : MonoBehaviour
 
         speed = cameraWidth / ultimateSpeed;
 
-        
+        targets = new List<GameObject>();
 
         FillStartPositions();
+        MakeGreens();
         
     }
+
+    void MakeGreens()
+    {
+        float lower_half = Mathf.Floor(fraction / 2.0f);
+        float position = (cameraWidth / -2.0f) + (cameraWidth * (lower_half/fraction));
+
+        foreach (var ypos in positions)
+        {
+            GameObject targetGreen = Instantiate(green) as GameObject;
+            targetGreen.transform.position = new Vector3(position, ypos, 1);
+
+            targetGreen.transform.localScale = new Vector3(0, 0, 0);
+
+            targets.Add(targetGreen);
+
+            
+
+        }
+
+
+    }
+
+
 
     void FillStartPositions()
     {
@@ -104,7 +148,22 @@ public class MainGameRunner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (targetShowing == 0)
+            {
+                targetShowing = 1;
+            }
+            else
+            {
+                targetShowing = 0;
+            }
+            foreach (var target in targets)
+            {
+                target.transform.localScale = new Vector3(targetShowing * 0.3f, 0.3f, 0.3f);
+            }
+        }
+
     }
 
 
@@ -255,6 +314,23 @@ public class MainGameRunner : MonoBehaviour
 
     }
 
+    private void updateText()
+    {
+        float total = 0;
+        for (int i = 0; i < score.Count; i++)
+        {
+            total += score[i];
+        }
+
+        labelText.text = "";
+        if (score.Count == 0) { return; }
+
+        float percentage = total / (float)score.Count;
+        if (testMode) { return; }
+        labelText.text = "Block Percentage: " + percentage.ToString("F2") + "%";
+    }
+
+
     private void MoveNodes()
     {
 
@@ -288,6 +364,7 @@ public class MainGameRunner : MonoBehaviour
                 if (Vector3.Distance(foulNode.transform.position, badNodes[i].transform.position) < explosionRadius)
                 {
                     toRemove = i;
+                    scoreAdd(1);
                 }
             }
 
@@ -310,6 +387,7 @@ public class MainGameRunner : MonoBehaviour
                 if(badNodes[i].GetComponent<NodeScript>().time > impact_time * 2f + 31.0f)
                 {
                     toRemove = i;
+                    scoreAdd(0);
                 }
             }
         }
@@ -322,12 +400,21 @@ public class MainGameRunner : MonoBehaviour
 
 
 
-        
+        updateText();
 
 
 
     }
 
+
+    private void scoreAdd(int num)
+    {
+        score.Add(num);
+        if (score.Count > 100)
+        {
+            score.RemoveAt(0);
+        }
+    }
 
 
 }

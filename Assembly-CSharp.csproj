@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\KillSelf.cs" />
     <Compile Include="Assets\Scripts\MainAlgorithm.cs" />
     <Compile Include="Assets\Scripts\MainGameRunner.cs" />
+    <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\NodeScript.cs" />
     <Compile Include="Assets\Scripts\Pattern.cs" />
     <Reference Include="Unity.Timeline.Editor">
